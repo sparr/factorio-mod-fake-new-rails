@@ -93,33 +93,24 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
   local icon = "__fake-new-rails__/graphics/entity/stone-diagonal-1.png"
   data:extend(get_recipe_and_item_prototypes(name, icon))
   local entity = get_entity_prototype(name, icon, {2,2})
-  local offset = 11/32
+  entity.build_grid_size = 1
+  -- local offset = 11/32
   entity.picture = {
     north = { layers = sprite_layers( {
       filename = "__fake-new-rails__/graphics/entity/diagonal-1.png",
-      width = 86,
-      height = 86,
-      shift = {offset, -offset},
+      width = 112,
+      height = 112,
+      -- shift = {offset, -offset},
     } ) },
     east = { layers = sprite_layers( {
       filename = "__fake-new-rails__/graphics/entity/diagonal-2.png",
-      width = 86,
-      height = 86,
-      shift = {offset, offset},
-    } ) },
-    south = { layers = sprite_layers( {
-      filename = "__fake-new-rails__/graphics/entity/diagonal-3.png",
-      width = 86,
-      height = 86,
-      shift = {-offset, offset},
-    } ) },
-    west = { layers = sprite_layers( {
-      filename = "__fake-new-rails__/graphics/entity/diagonal-4.png",
-      width = 86,
-      height = 86,
-      shift = {-offset, -offset},
+      width = 112,
+      height = 112,
+      -- shift = {offset, offset},
     } ) },
   }
+  entity.picture.south = table.deepcopy(entity.picture.north)
+  entity.picture.west = table.deepcopy(entity.picture.east)
   if elevation_id == 2 then
     entity.picture = elevate(entity.picture)
   end

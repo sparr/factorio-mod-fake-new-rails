@@ -11,8 +11,6 @@ for layer in "metals" "sleepers" "fences" "stone" "signals"; do
 
     echo "convert ${layer}-diagonal"
     convert -rotate  90 ${layer}-diagonal-1.png ${layer}-diagonal-2.png
-    convert -rotate 180 ${layer}-diagonal-1.png ${layer}-diagonal-3.png
-    convert -rotate 270 ${layer}-diagonal-1.png ${layer}-diagonal-4.png
 
     echo "convert ${layer}-half-diagonal"
     convert -rotate  90 ${layer}-half-diagonal-1.png ${layer}-half-diagonal-2.png
