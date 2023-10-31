@@ -32,7 +32,8 @@ local function get_entity_prototype(name, icon, size)
   return entity
 end
 
-local function elevate(picture)
+local function elevate(entity)
+  local picture = entity.picture
   for _, sprite in pairs(picture) do
     for _, layer in pairs(sprite.layers) do
       if layer.shift ~= nil then
@@ -47,7 +48,9 @@ local function elevate(picture)
     fences_layer.shift[2] = fences_layer.shift[2] - 0.5
     table.insert(sprite.layers, fences_layer)
   end
-  return picture
+  -- not allowed in current Factorio
+  -- entity.selection_box[1][2] = entity.selection_box[1][2] - 3
+  -- entity.selection_box[2][2] = entity.selection_box[2][2] - 3
 end
 
 local function sprite_layers(layer)
@@ -84,7 +87,7 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
   entity.picture.south = table.deepcopy(entity.picture.north)
   entity.picture.west = table.deepcopy(entity.picture.east)
   if elevation_id == 2 then
-    entity.picture = elevate(entity.picture)
+    elevate(entity)
   end
   data:extend({entity})
 
@@ -112,7 +115,7 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
   entity.picture.south = table.deepcopy(entity.picture.north)
   entity.picture.west = table.deepcopy(entity.picture.east)
   if elevation_id == 2 then
-    entity.picture = elevate(entity.picture)
+    elevate(entity)
   end
   data:extend({entity})
 
@@ -137,7 +140,7 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
     entity.picture.south = table.deepcopy(entity.picture.north)
     entity.picture.west = table.deepcopy(entity.picture.east)
     if elevation_id == 2 then
-      entity.picture = elevate(entity.picture)
+      elevate(entity)
     end
     data:extend({entity})
   end
@@ -177,7 +180,7 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
         } ) },
       }
       if elevation_id == 2 then
-        entity.picture = elevate(entity.picture)
+        elevate(entity)
       end
       data:extend({entity})
     end
