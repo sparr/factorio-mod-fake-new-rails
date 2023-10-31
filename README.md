@@ -1,6 +1,8 @@
 # factorio-mod-fake-new-rails
 A mod for the game Factorio. Adds simple non-rail entities shaped like the upcoming Space Age / Factorio 2.0 rails, for players eager to tinker with the shapes of the new rails.
 
+![entities laid out on a grid](graphics/screenshots/example_0001.png "Example")
+
 # Instructions
 While the entities don't have names and are split into pairs to accommodate 2/4/8 directional rotation, it is strongly recommended to import and use some part of the [blueprint book](blueprint_book). It contains each rotation of each entity, arranged into sub-books and in an order that should feel similar to rotating a single entity. A recommended hotbar configuration of sub-books is as follows:
 
