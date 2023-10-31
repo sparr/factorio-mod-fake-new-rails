@@ -1,0 +1,24 @@
+{
+    "Lua.runtime.builtin": {
+        "io": "disable",
+        "os": "disable",
+        "math": "disable",
+        "debug": "disable",
+        "coroutine": "disable",
+        "package": "disable"
+    },
+    "Lua.runtime.version": "Lua 5.2",
+    "Lua.diagnostics.globals": [
+        "__Profiler"
+    ],
+    "Lua.runtime.special": {
+        "__object_name": "type"
+    },
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
+    ],
+    "Lua.runtime.plugin": "/home/sparr/.config/Code - OSS/User/workspaceStorage/6e11b98a6b8d96ad71f1a8835e5ba35a/justarandomgeek.factoriomod-debug/sumneko-3rd/factorio/plugin.lua",
+    "Lua.workspace.library": [
+        "/home/sparr/.config/Code - OSS/User/workspaceStorage/6e11b98a6b8d96ad71f1a8835e5ba35a/justarandomgeek.factoriomod-debug/sumneko-3rd/factorio/library"
+    ]
+}
