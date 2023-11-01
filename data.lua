@@ -54,6 +54,7 @@ local function elevate(entity)
     connections_layer.filename = connections_layer.filename:gsub("entity/stone%-", "entity/connections-")
     table.insert(sprite.layers, connections_layer)
   end
+  entity.render_layer = "higher-object-above"
   -- not allowed in current Factorio
   -- entity.selection_box[1][2] = entity.selection_box[1][2] - 3
   -- entity.selection_box[2][2] = entity.selection_box[2][2] - 3
