@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 2023-10-31
+  Bugfixes:
+    - Take support entity off rail grid
+  Changes:
+    - Add connection point indicators to elevated rails
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 2023-10-31
   Bugfixes:

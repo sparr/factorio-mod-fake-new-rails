@@ -43,10 +43,12 @@ local function elevate(entity)
       end
     end
     local fences_layer = table.deepcopy(sprite.layers[1])
-    log(serpent.dump(sprite))
     fences_layer.filename = fences_layer.filename:gsub("entity/stone%-", "entity/fences-")
     fences_layer.shift[2] = fences_layer.shift[2] - 0.5
     table.insert(sprite.layers, fences_layer)
+    local connections_layer = table.deepcopy(sprite.layers[1])
+    connections_layer.filename = connections_layer.filename:gsub("entity/stone%-", "entity/connections-")
+    table.insert(sprite.layers, connections_layer)
   end
   -- not allowed in current Factorio
   -- entity.selection_box[1][2] = entity.selection_box[1][2] - 3
@@ -226,6 +228,7 @@ local name = "fake-rail-support"
 local icon = "__fake-new-rails__/graphics/entity/support.png"
 data:extend(get_recipe_and_item_prototypes(name, icon))
 local entity = get_entity_prototype(name, icon, {2,2})
+entity.build_grid_size = 1
 entity.picture = {
   filename = "__fake-new-rails__/graphics/entity/support.png",
   width = 128,
