@@ -42,11 +42,15 @@ local function elevate(entity)
         layer.shift = {0, -3}
       end
     end
-    local fences_layer = table.deepcopy(sprite.layers[1])
+    local shadow_layer = table.deepcopy(sprite.layers[1])
+    shadow_layer.shift[2] = shadow_layer.shift[2] + 3
+    shadow_layer.draw_as_shadow = true
+    table.insert(sprite.layers, 1, shadow_layer)
+    local fences_layer = table.deepcopy(sprite.layers[2])
     fences_layer.filename = fences_layer.filename:gsub("entity/stone%-", "entity/fences-")
     fences_layer.shift[2] = fences_layer.shift[2] - 0.5
     table.insert(sprite.layers, fences_layer)
-    local connections_layer = table.deepcopy(sprite.layers[1])
+    local connections_layer = table.deepcopy(sprite.layers[2])
     connections_layer.filename = connections_layer.filename:gsub("entity/stone%-", "entity/connections-")
     table.insert(sprite.layers, connections_layer)
   end
