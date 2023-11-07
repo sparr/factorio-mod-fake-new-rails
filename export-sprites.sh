@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd graphics/entity
+
 for layer in "metals" "sleepers" "fences" "stone" "signals" "connections"; do
     for entity in "orthogonal" "diagonal" "half-diagonal" "orthogonal-to-half-diagonal" "diagonal-to-half-diagonal"; do
         echo "inkscape export ${layer}-${entity}"
@@ -46,3 +48,7 @@ convert -flop ramp-east.png ramp-west.png
 
 echo "inkscape export support"
 inkscape fake-new-rails.svg --actions="export-filename:support.png; export-id:support; export-do;"
+
+for f in *.png; do
+    pngcrush -ow -new "$f"
+done
