@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2023-11-07
+  Bugfixes:
+    - Draw accurate ramp collision box
+  Features:
+    - Draw connection/support points on elevated rails
+  Changes:
+    - Run pngcrush on sprites
+---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: 2023-10-31
   Bugfixes:
