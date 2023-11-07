@@ -49,6 +49,7 @@ convert -flop ramp-east.png ramp-west.png
 echo "inkscape export support"
 inkscape fake-new-rails.svg --actions="export-filename:support.png; export-id:support; export-do;"
 
+echo "pngcrush everything"
 for f in *.png; do
-    pngcrush -ow -new "$f"
+    pngcrush -ow -new "$f" &> /dev/null
 done
