@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.2
+Date: 2023-11-11
+  Features:
+    - Somewhat accurate defined collision boxes for ramp, support, orthogonal rail
+  Bugfixes:
+    - More accurate ramp collision box graphic
+---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 2023-11-11
   Changes:

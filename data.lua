@@ -26,16 +26,21 @@ local function get_recipe_and_item_prototypes(name, icon)
     }
 end
 
-local function get_entity_prototype(name, icon, size)
+local function get_entity_prototype(name, icon, selection_size, collision_size)
   local entity = table.deepcopy(data.raw["simple-entity-with-owner"]["simple-entity-with-owner"])
+  if selection_size == nil then
+    selection_size = {2,2}
+    collision_size = {1.8,1.8}
+  end
+  collision_size = collision_size or selection_size
   entity.minable = {hardness = 0.1, mining_time = 0.5, result = name}
   entity.name = name
   entity.icon = icon
   entity.max_health = 1000
-  entity.collision_mask = {} -- so they can overlap with each other
+  entity.collision_mask = {}
   entity.build_grid_size = 2
-  entity.collision_box = {{-size[1]/2+0.1, -size[2]/2+0.1}, {size[1]/2-0.1, size[2]/2-0.1}}
-  entity.selection_box = {{-size[1]/2, -size[2]/2}, {size[1]/2, size[2]/2}}
+  entity.collision_box = {{-collision_size[1]/2, -collision_size[2]/2}, {collision_size[1]/2, collision_size[2]/2}}
+  entity.selection_box = {{-selection_size[1]/2, -selection_size[2]/2}, {selection_size[1]/2, selection_size[2]/2}}
   return entity
 end
 
@@ -80,13 +85,15 @@ local function get_sprite_layers(layer)
   return layers
 end
 
+
+-- every rail gets generated with elevated and non-elevated versions
 for elevation_id, elevation_name in pairs({"lo", "hi"}) do
 
   -- straight north/south and east/west rails
   local name = "fake-rail-" .. elevation_name .. "-orthogonal"
   local icon = "__fake-new-rails__/graphics/entity/stone-orthogonal-1.png"
   data:extend(get_recipe_and_item_prototypes(name, icon))
-  local entity = get_entity_prototype(name, icon, {2,2})
+  local entity = get_entity_prototype(name, icon, {2.57, 1.8}, {1.98, 1.4})
   entity.picture = {
     north = { layers = get_sprite_layers( {
       filename = "__fake-new-rails__/graphics/entity/orthogonal-1.png",
@@ -209,7 +216,7 @@ end
 local name = "fake-rail-ramp"
 local icon = "__fake-new-rails__/graphics/entity/ramp-east.png"
 data:extend(get_recipe_and_item_prototypes(name, icon))
-local entity = get_entity_prototype(name, icon, {2,16})
+local entity = get_entity_prototype(name, icon, {4,16}, {3.6, 15.6})
 entity.picture = {
   north = {
     filename = "__fake-new-rails__/graphics/entity/ramp-north.png",
@@ -242,7 +249,9 @@ data:extend({entity})
 local name = "fake-rail-support"
 local icon = "__fake-new-rails__/graphics/entity/support.png"
 data:extend(get_recipe_and_item_prototypes(name, icon))
-local entity = get_entity_prototype(name, icon, {2,2})
+local entity = get_entity_prototype(name, icon, {3,3}, {2.8, 2.8})
+entity.tile_height = 4
+entity.tile_width = 4
 entity.build_grid_size = 1
 entity.picture = {
   filename = "__fake-new-rails__/graphics/entity/support.png",
