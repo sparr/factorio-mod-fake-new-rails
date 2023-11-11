@@ -62,6 +62,7 @@ local function elevate(entity)
         table.insert(sprite.layers, new_layer)
       end
     end
+    sprite.layers[orig_bottom_layer].tint = {r=1, g=0.75, b=0.75, a=1}
   end
   entity.render_layer = "higher-object-above"
   -- not allowed in current Factorio
