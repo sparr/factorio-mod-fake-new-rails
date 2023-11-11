@@ -217,6 +217,7 @@ local name = "fake-rail-ramp"
 local icon = "__fake-new-rails__/graphics/entity/ramp-east.png"
 data:extend(get_recipe_and_item_prototypes(name, icon))
 local entity = get_entity_prototype(name, icon, {4,16}, {3.6, 15.6})
+entity.tile_width = 2
 entity.picture = {
   north = {
     filename = "__fake-new-rails__/graphics/entity/ramp-north.png",
