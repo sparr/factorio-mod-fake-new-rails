@@ -2,7 +2,7 @@
 
 cd graphics/entity
 
-for layer in "metals" "sleepers" "fences" "stone" "signals" "connections"; do
+for layer in "metals" "sleepers" "fences" "stone" "signals" "connections" "collisions"; do
     for entity in "orthogonal" "diagonal" "half-diagonal" "orthogonal-to-half-diagonal" "diagonal-to-half-diagonal"; do
         echo "inkscape export ${layer}-${entity}"
         inkscape fake-new-rails.svg --actions="select-all:layers; object-set-attribute:style, display:none; select-clear; select-by-id:${layer}; object-set-attribute:style, display:inline; export-filename:${layer}-${entity}-1.png; export-id:${entity}; export-do;"

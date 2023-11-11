@@ -1,4 +1,5 @@
-local sprite_layers = { "stone", "sleepers", "metals", "signals" }
+local sprite_layer_names = { "stone", "sleepers", "metals", "signals", "collisions" }
+local sprite_layer_indices = { stone = 1, sleepers = 2, metals = 3, signals = 4, collisions = 5 }
 local elevated_sprite_layers = {
   { name = "shadow", yshift = 3, bottom = true, shadow = true, fileprefix = "stone" },
   { name = "connections" },
@@ -47,11 +48,13 @@ end
 local function elevate(entity)
   local picture = entity.picture
   for _, sprite in pairs(picture) do
-    for _, layer in pairs(sprite.layers) do
-      if layer.shift ~= nil then
-        layer.shift[2] = layer.shift[2] - 3
-      else
-        layer.shift = {0, -3}
+    for layer_index, layer in pairs(sprite.layers) do
+      if layer_index ~= sprite_layer_indices["collisions"] then
+        if layer.shift ~= nil then
+          layer.shift[2] = layer.shift[2] - 3
+        else
+          layer.shift = {0, -3}
+        end
       end
     end
     orig_bottom_layer = 1
@@ -59,12 +62,12 @@ local function elevate(entity)
       local new_layer = table.deepcopy(sprite.layers[orig_bottom_layer])
       new_layer.shift[2] = new_layer.shift[2] + (layer_def["yshift"] and layer_def["yshift"] or 0)
       new_layer.draw_as_shadow = layer_def["shadow"]
-      new_layer.filename = new_layer.filename:gsub("entity/" .. sprite_layers[1] .. "%-", "entity/" .. ( layer_def["fileprefix"] or layer_def["name"] ).. "-")
+      new_layer.filename = new_layer.filename:gsub("entity/" .. sprite_layer_names[1] .. "%-", "entity/" .. ( layer_def["fileprefix"] or layer_def["name"] ).. "-")
       if layer_def["bottom"] then
         table.insert(sprite.layers, 1, new_layer)
         orig_bottom_layer = orig_bottom_layer + 1
       else
-        table.insert(sprite.layers, new_layer)
+        table.insert(sprite.layers, sprite_layer_indices["collisions"], new_layer) -- collisions stay on top
       end
     end
     sprite.layers[orig_bottom_layer].tint = {r=1, g=0.75, b=0.75, a=1}
@@ -77,7 +80,7 @@ end
 
 local function get_sprite_layers(layer)
   local layers = {}
-  for _, layer_name in pairs(sprite_layers) do
+  for _, layer_name in pairs(sprite_layer_names) do
     local new_layer = table.deepcopy(layer)
     new_layer.filename = new_layer.filename:gsub("entity/","entity/" .. layer_name .. "-")
     table.insert(layers, new_layer)
