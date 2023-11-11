@@ -3,6 +3,8 @@ Version: 0.2.1
 Date: 2023-11-11
   Changes:
     - Tint elevated rails red
+  Bugfixes:
+    - More accurate ramp collision box graphic
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2023-11-07
