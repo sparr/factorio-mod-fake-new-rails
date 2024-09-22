@@ -123,7 +123,9 @@ for elevation_id, elevation_name in pairs({"lo", "hi"}) do
   local icon = "__fake-new-rails__/graphics/entity/stone-diagonal-1.png"
   data:extend(get_recipe_and_item_prototypes(name, icon))
   local entity = get_entity_prototype(name, icon, {2,2})
-  entity.build_grid_size = 1
+  entity.build_grid_size = 2
+  entity.tile_width = 4
+  entity.tile_height = 4
   -- local offset = 11/32
   entity.picture = {
     north = { layers = get_sprite_layers( {
