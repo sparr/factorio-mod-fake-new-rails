@@ -299,3 +299,33 @@ entity.picture = {
   shift = {0, -1.125},
 }
 data:extend({entity})
+
+local signal_sprite_directions_info = {
+  {"north", {x=1,y=0}},
+  {"east", {x=0,y=1}},
+  {"south", {x=-2,y=0}},
+  {"west", {x=0,y=-2}}
+}
+
+-- signals
+for _, signal_info in pairs({{96, "rail-signal"}, {160, "rail-chain-signal"}}) do
+  local signal_sprite_size = signal_info[1]
+  local signal_name = signal_info[2]
+  name = "fake-" .. signal_name
+  icon = "__base__/graphics/icons/" .. signal_name .. ".png"
+  data:extend(get_recipe_and_item_prototypes(name, icon))
+  entity = get_entity_prototype(name, icon, {1,1}, {0.4, 0.4})
+  entity.build_grid_size = 1
+  for index, sprite_info in pairs(signal_sprite_directions_info) do
+    local sprite_direction = sprite_info[1]
+    entity.picture[sprite_direction] = {
+      filename = "__base__/graphics/entity/" .. signal_name .. "/" .. signal_name .. ".png",
+      width = signal_sprite_size,
+      height = signal_sprite_size,
+      x = signal_name == "rail-chain-signal" and 480 or 0, -- green chain signals in fourth column
+      y = (index - 1) * signal_sprite_size * 2,
+      shift = signal_name == "rail-chain-signal" and sprite_info[2] or nil -- chain signals are off center
+    }
+  end
+  data:extend({entity})
+end
