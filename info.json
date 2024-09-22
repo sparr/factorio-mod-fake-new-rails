@@ -6,5 +6,8 @@
   "homepage": "http://github.com/sparr/factorio-mod-fake-new-rails",
   "contact": "sparr0@gmail.com",
   "description": "Adds simple non-rail entities shaped like the new Space Age / Factorio 2.0 rails.",
-  "factorio_version": "1.1"
+  "factorio_version": "1.1",
+  "package": {
+    "ignore": ["graphics/screenshots/*"]
+  }
 }
